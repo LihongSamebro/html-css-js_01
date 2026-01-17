@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex初尝试</title>
+  <!-- 
+    vh代表view height视图高度 ；
+    * 号为通用选择器，对全部元素进行样式；
+    因为整个body都是Flex所以不需要再display:flex了；
+    mg8为margin：8px的缩写，mgr8即margin-right：8px；
+
+    刚开始的时候可以给所有元素添加边框:如下后面可以删除
+        * {
+      border: 1px solid black;
+    }
+
+    添加yinYing样式即box-shadow，为每个白色区块添加阴影
+
+    .daoHang即左侧导航栏的样式
+   //-->
+
+  <!-- 移动端适配
+    1. css 提供媒体查询的功能即"@media(){}，当满足()条件时，执行{}里的程序
+   //-->
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #eee;
+    }
+
+
+    .flex {
+      display: flex;
+    }
+
+    .baiSe {
+      background-color: white;
+    }
+
+    .flex1 {
+      flex: 1;
+    }
+
+    .flexColumn {
+      flex-direction: column;
+    }
+
+    .mg8 {
+      margin: 8px;
+    }
+
+    .mgr8 {
+      margin-right: 8px;
+    }
+
+    .mgt8 {
+      margin-top: 8px;
+    }
+
+    .yinYing {
+      box-shadow: rgb(0 0 0 /20%) 0px 2px 1px -1px,
+        rgb(0 0 0 /14%) 0px 1px 1px 0px, rgb(0 0 0 /12%) 0px 1px 3px 0px;
+    }
+
+    .daoHang {
+      padding: 10px 20px;
+      border-bottom: 1px solid rgb(160, 160, 160);
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* 当屏幕宽度小于600px时,"补充和覆盖"同名的上述的class，或创建新的class */
+    @media(max-width:600px) {
+
+      /*侧边栏关闭*/
+      .ceBian {
+        display: none;
+      }
+
+      .neiRong {
+        flex-direction: column;
+      }
+
+      /* 取消显示内容区的滚动条 */
+      .neiRong::-webkit-scrollbar {
+        display: none;
+      }
+
+      .shuJuQu {
+        flex-direction: column;
+      }
+
+      .youQu {
+        margin-left: 8px;
+      }
+
+      .shuJu {
+        margin: 0 0 8px;
+        flex: auto;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="flex">
+  <!-- 侧边栏 -->
+  <div style="width: 200px; z-index:2;" class="ceBian baiSe yinYing ">
+    <!-- 头像栏 -->
+    <div style="
+     padding: 10px;
+     border-bottom:1px solid #999;
+     align-items:center;
+     justify-content:center;" class="flex">
+      <img src="" alt="" width="40px" height="40px">
+      <div style="margin-left: 10px;"> LiHong</div>
+    </div>
+    <!-- 导航栏 -->
+    <div class="flex1">
+      <div class="daoHang">导航</div>
+      <div class="daoHang">导航</div>
+      <div class="daoHang">导航</div>
+      <div class="daoHang">导航</div>
+      <div class="daoHang">导航</div>
+    </div>
+  </div>
+
+  <!-- 主区域 -->
+  <div class="flex flex1 flexColumn">
+    <!-- 头部栏 -->
+    <!-- 给头目栏增加Z轴深度，即置顶改区域 -->
+    <div style="height: 60px; z-index:1" class="baiSe yinYing"> </div>
+    <!-- 内容栏 -->
+    <!-- overflow:auto 这样当前页面多余的列表项就会在内容中进行滑动 -->
+    <div style="overflow: auto;" class="neiRong flex flex1">
+      <!-- 左区域3/4区域 -->
+      <div style="flex:3" class=" flex flexColumn mg8">
+        <!-- 数据区 -->
+        <div class="shuJuQu flex">
+          <!-- 数据块 -->
+          <div style="height:100px" class="shuJu flex1 baiSe yinYing mgr8"></div>
+          <div style="height:100px" class="shuJu flex1 baiSe yinYing mgr8"></div>
+          <div style="height:100px" class="shuJu flex1 baiSe yinYing mgr8"></div>
+          <div style="height:100px" class="shuJu flex1 baiSe yinYing"></div>
+        </div>
+
+        <!-- 列表区 -->
+        <div class="flex flexColumn">
+          <!-- 列表项 -->
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+          <div style="height: 160px;" class="baiSe yinYing mgt8"></div>
+
+        </div>
+
+      </div>
+      <!-- 右区域1/4区域 -->
+      <div style="flex:1" class=" youQu flexColumn mgt8 mgr8">
+        <!-- 提示区 -->
+        <div style="height: 150px;" class="baiSe yinYing"></div>
+        <!-- 消息区 -->
+        <div style="height: 300px;" class="baiSe yinYing mgt8"></div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
