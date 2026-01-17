@@ -1,0 +1,12 @@
+test {
+  color: aqua;
+}
+
+#test2 {
+  color: rgb(213, 0, 255);
+  margin: 0px;
+}
+
+.test3 {
+  color: red;
+}
